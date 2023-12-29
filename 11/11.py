@@ -120,12 +120,12 @@ def largest_product_in_a_grid():
     # print(board)
 
     ## this is good
-    gph = find_greatest_product_horizontal(board)
-    print(gph)
+    # gph = find_greatest_product_horizontal(board)
+    # print(gph)
 
-    ## TODO
-    gpv = find_greatest_product_vertical(board)
-    print(gpv)
+    # ## this is good
+    # gpv = find_greatest_product_vertical(board)
+    # print(gpv)
 
     ## TODO idk about this
     # gpd = find_greatest_product_diagonal(board)
