@@ -52,6 +52,18 @@ def find_max_matrix_product(matrix: np.array) -> int:
     print(f'max_diag_prod {max_diag_prod}')
     return max(max_row_prod, max_col_prod, max_diag_prod)
 
+
+
+def create_vector_board(myS: str) -> list:
+
+
+    grid = [row.strip() for row in myS.split("\n")]
+    grid = [[int(cell) for cell in row.split(" ")] for row in grid if row != ""]
+    print(grid)
+    import time
+    time.sleep(5)
+    return grid
+
 def better_way(myS):
     ## take a Y x Y chunk out of the board
     ## do all vertical, horizontal, and diagonal products
@@ -59,6 +71,10 @@ def better_way(myS):
     ## then go to the new row by returning to the first column and decrementing the row by 1
     ## until no rows left
     myL = myS.split()
+    ## since the board is 20 X 20
+    ## were going to need a total of 17 X 17 vectors = 289 vectors
+    ## to iterate through to find max products
+    myVectors = create_vector_board(myS)
     myVector = []
     myRow = []
     count = 0
