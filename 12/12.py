@@ -11,6 +11,8 @@ def get_n_triangle_num(n):
     return sum(nums)
 
 ## i think we need to reverse this?
+## because were doing redundant operations every time we dont meet the condition
+## to exit the while loop
 def get_num_divisors(n_triangle_num: int) -> int:
     divisors = []
     for num in range(1, n_triangle_num+1):
