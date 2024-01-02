@@ -4,41 +4,46 @@
 from time import perf_counter
 NUM_DIVISORS_TEST = 500
 
-def get_n_triangle_num(n):
+def get_nth_triangle_num(n):
     nums = []
     for num in range(1, n+1):
         nums.append(num)
     return sum(nums)
 
-def get_num_divisors(n_triangle_num: int) -> int:
+def get_num_divisors(nth_triangle_num: int) -> int:
     divisors = []
-    nums = range(1, n_triangle_num+1)
+    nums = range(1, nth_triangle_num+1)
     for n in nums:
-        if n_triangle_num % n == 0:
-            compliment = n_triangle_num // n
+        if nth_triangle_num % n == 0:
+            compliment = nth_triangle_num // n
             if n > compliment:
+                ## weve already done this compution
+                ## where current compliment was n
                 break
             divisors.append(compliment)
             divisors.append(n)
 
     return len(list(set(divisors)))
 
+def get_next_triangle_num(running_total: int, n: int):
+    return running_total + n
+
 def solve():
-    n = 7
-    n_triangle_num = get_n_triangle_num(n)
-    num_divisors = get_num_divisors(n_triangle_num)
+    nth = 7
+    nth_triangle_num = get_nth_triangle_num(nth)
+    num_divisors = get_num_divisors(nth_triangle_num)
 
     while num_divisors < NUM_DIVISORS_TEST:
-        n += 1
-        n_triangle_num += n
-        num_divisors = get_num_divisors(n_triangle_num)
+        nth += 1
+        nth_triangle_num += nth
+        num_divisors = get_num_divisors(nth_triangle_num)
     
-    print(n_triangle_num)
-    return n_triangle_num
+    return nth_triangle_num
 
 if __name__ == '__main__':
     start = perf_counter()
-    solve()
+    solution = solve()
+    print(f'{solution} is the first triangle number with over {NUM_DIVISORS_TEST} divisors')
     end = perf_counter()
-    total = (end - start)/60
-    print(f'total time : {total} minutes!')
+    total = (end - start)
+    print(f'- Program takes {total} seconds to compute...')
