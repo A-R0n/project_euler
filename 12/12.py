@@ -2,7 +2,7 @@
 
 ## What is the value of the first triangle number to have over five hundred divisors?
 from time import perf_counter
-NUM_DIVISORS_TEST = 100
+NUM_DIVISORS_TEST = 500
 
 def get_n_triangle_num(n):
     nums = []
@@ -10,16 +10,18 @@ def get_n_triangle_num(n):
         nums.append(num)
     return sum(nums)
 
-## i think we need to reverse this?
-## because were doing redundant operations every time we dont meet the condition
-## to exit the while loop
 def get_num_divisors(n_triangle_num: int) -> int:
     divisors = []
-    for num in range(1, n_triangle_num+1):
-        if n_triangle_num % num == 0:
-            # print(num)
-            divisors.append(num)
-    return len(divisors)
+    nums = range(1, n_triangle_num+1)
+    for n in nums:
+        if n_triangle_num % n == 0:
+            compliment = n_triangle_num // n
+            if n > compliment:
+                break
+            divisors.append(compliment)
+            divisors.append(n)
+
+    return len(list(set(divisors)))
 
 def solve():
     n = 7
