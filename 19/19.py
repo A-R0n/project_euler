@@ -17,14 +17,7 @@ def get_day_of_week(dateStr: str):
 def solve():
     days_of_week = []
     months = [calendar.month_name[i] for i in range(1,13)]
-    ## this gives us 170 for some reason... double for loop below gives us correct answer (171)
-    # days_of_week = [get_day_of_week(str(month + ' 1, ' + str(year))) for month in months for year in range(STARTING_YEAR, ENDING_YEAR)]
-
-    for year in range(STARTING_YEAR, ENDING_YEAR+1):
-        for month in months:
-            date_str = month + ' 1, ' + str(year)
-            day_of_week = get_day_of_week(date_str)
-            days_of_week.append(day_of_week)
+    days_of_week = [get_day_of_week(str(month + ' 1, ' + str(year))) for month in months for year in range(STARTING_YEAR, ENDING_YEAR+1)]
     return Counter(days_of_week)[X]
 
 if __name__ == '__main__':
