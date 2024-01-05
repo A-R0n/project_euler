@@ -11,14 +11,12 @@ import datetime
 from collections import Counter
 import calendar
 
-count = 0
-days_of_week = []
-months = [calendar.month_name[i] for i in range(1,13)]
-
 def get_day_of_week(dateStr: str):
     return datetime.datetime.strptime(dateStr, '%B %d, %Y').strftime('%A')
 
 def solve():
+    days_of_week = []
+    months = [calendar.month_name[i] for i in range(1,13)]
     ## this gives us 170 for some reason... double for loop below gives us correct answer (171)
     # days_of_week = [get_day_of_week(str(month + ' 1, ' + str(year))) for month in months for year in range(STARTING_YEAR, ENDING_YEAR)]
 
