@@ -16,7 +16,7 @@ def sum_values_in_lists(d: dict) -> dict:
 def is_amicable_pair(divisors_dict_sums: dict, num1: str) -> bool:
     num1_sum = divisors_dict_sums[str(num1)]
     num2_sum = divisors_dict_sums[str(num1_sum)]
-    if num2_sum == int(num1) and int(num1_sum) == int(divisors_dict_sums[str(num2_sum)]):
+    if num2_sum == int(num1):
         return True
     return False
 
