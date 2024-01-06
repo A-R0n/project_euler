@@ -55,23 +55,6 @@ def solve():
     divisors_dict = create_divisors_dict()
     divisors_dict_sums = sum_values_in_lists(divisors_dict)
     return sum([parse_dict(divisors_dict_sums, num) for num in divisors_dict_sums])
-    
-    
-    
-    # amicable_sums = []
-    # for a in divisors_dict_sums:
-    #     a_sum = divisors_dict_sums[str(a)]
-    #     ## a number can not be amicable to itself (its sum)
-    #     if int(a) != int(a_sum):
-    #         ## the sum of the divisors needs to be a key in our dict
-    #         if 2 <= int(a_sum) <= NUM:
-    #             ## and it can't be a prime number
-    #             if int(divisors_dict_sums[str(a_sum)]) > 1:
-    #                 b_sum = divisors_dict_sums[str(a_sum)]
-    #                 if b_sum == int(a) and int(a_sum) == int(divisors_dict_sums[str(b_sum)]):
-    #                     amicable_sums.append(divisors_dict_sums[str(b_sum)])
-    #                     print(f'a: {a}, a_sum {a_sum}, b: {divisors_dict_sums[str(b_sum)]}, b_sum: {b_sum}')
-    # return sum(amicable_sums)
 
 if __name__ == '__main__':
     start = perf_counter()
