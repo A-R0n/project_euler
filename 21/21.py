@@ -26,20 +26,14 @@ def is_sum_not_itself(divisors_dict_sums: dict, num: str) -> bool:
         return True
     return False
 
-def is_sum_in_dict(divisors_dict_sums: dict, num: str) -> bool:
+def is_nonprime_sum_in_dict(divisors_dict_sums: dict, num: str) -> bool:
     num_sum = divisors_dict_sums[str(num)]
     if 2 <= int(num_sum) <= NUM:
         return True
     return False
 
-def is_number_prime(divisors_dict_sums: dict, num: str) -> bool:
-    num_sum = divisors_dict_sums[str(num)]
-    if int(divisors_dict_sums[str(num_sum)]) > 1:
-        return True
-    return False
-
 def parse_dict(divisors_dict_sums: dict, num: str) -> int:
-    if is_sum_in_dict(divisors_dict_sums, num):
+    if is_nonprime_sum_in_dict(divisors_dict_sums, num):
         if is_sum_not_itself(divisors_dict_sums, num):
             if is_amicable_pair(divisors_dict_sums, num):
                 return divisors_dict_sums[str(num)]
