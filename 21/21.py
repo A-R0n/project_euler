@@ -2,13 +2,14 @@
 
 ## Evaluate the sum of all amicable numbers under 10000
 from time import perf_counter
+import math
 NUM = 10000
 
 def get_divisors(num: int) -> list:
     return [n for n in range(1, (num//2) + 1) if num % n == 0]
 
-def create_divisors_dict() -> dict:
-    return {str(num): get_divisors(num) for num in range(2, NUM+1)}
+def create_divisors_dict(n: int) -> dict:
+    return {str(num): get_divisors(num) for num in range(2, n+1)}
 
 def sum_values_in_lists(d: dict) -> dict:
     return {str(val): sum(d[str(val)]) for val in d}
@@ -41,14 +42,14 @@ def parse_dict(divisors_dict_sums: dict, num: str) -> int:
         return 0
     return 0
 
-def solve():
-    divisors_dict = create_divisors_dict()
+def solve(n: int):
+    divisors_dict = create_divisors_dict(n)
     divisors_dict_sums = sum_values_in_lists(divisors_dict)
     return sum([parse_dict(divisors_dict_sums, num) for num in divisors_dict_sums])
 
 if __name__ == '__main__':
     start = perf_counter()
-    solution = solve()
+    solution = solve(NUM)
     print(solution)
     end = perf_counter()
     total_seconds = end - start
