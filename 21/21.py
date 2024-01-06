@@ -40,13 +40,9 @@ def is_number_prime(divisors_dict_sums: dict, num: str) -> bool:
 
 def parse_dict(divisors_dict_sums: dict, num: str) -> int:
     if is_sum_in_dict(divisors_dict_sums, num):
-        ## the sum of the divisors needs to be a key in our dict
-        if is_number_prime(divisors_dict_sums, num):
-            ## and it can't be a prime number
-            if is_sum_not_itself(divisors_dict_sums, num):
-                if is_amicable_pair(divisors_dict_sums, num):
-                    return divisors_dict_sums[str(num)]
-                return 0
+        if is_sum_not_itself(divisors_dict_sums, num):
+            if is_amicable_pair(divisors_dict_sums, num):
+                return divisors_dict_sums[str(num)]
             return 0
         return 0
     return 0
