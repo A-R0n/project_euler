@@ -12,7 +12,6 @@ UPPER_LIMIT = 28123
 SMALLESET_ABUNDANT_NUMBER = 12
 SMALLEST_NUM_SUM_2_ABUNDANT_SUMS = 24
 
- 
 from time import perf_counter
 import math
 from functools import lru_cache
@@ -28,37 +27,29 @@ def sum_div(num: int):
                 total += y
     return total
 
-def get_nums() -> list:
-    abundant_nums = []
-    for num in range(1, UPPER_LIMIT+1):
-        num_sum = sum_div(num)
-        if num < num_sum:
-            abundant_nums.append(num)
-    return abundant_nums
+def get_abundant_nums() -> list:
+    return [num for num in range(1, UPPER_LIMIT+1) if num < sum_div(num)]
 
-def get_nums_not_written_as_sum_2_abundant_nums(abundant_nums: list) -> list:
-    nums = [num for num in range(1,UPPER_LIMIT+1)]
+def update_nums(all_nums: list, abundant_nums: list) -> list:
     idx = 0
     for num in abundant_nums:
         for n in abundant_nums[idx:]:
             next_num = n + num
             if next_num <= UPPER_LIMIT:
-                if next_num in nums:
-                    ## then the non_abundant_number is a sum of two abundant numbers
-                    ## so we need to remove it
-                    nums.remove(next_num)
+                ## O(1) compared to O(n) before
+                all_nums[next_num-1][-1] = False
             else:
                 break
         idx += 1
+    return [n[0] for n in all_nums if n[-1] == True]
 
-    return nums
-
+def get_nums_not_written_as_sum_2_abundant_nums(all_nums: list, abundant_nums: list) -> list:
+    return sum(update_nums(all_nums, abundant_nums))
 
 def solve():
-    abundant_nums = get_nums()
-    nums_not_written_as_sum_2_abundant_nums = get_nums_not_written_as_sum_2_abundant_nums(abundant_nums)
-    total_sum = sum(nums_not_written_as_sum_2_abundant_nums)
-    return total_sum
+    all_nums = [[num, True] for idx, num in enumerate([num for num in range(1,UPPER_LIMIT+1)])]
+    abundant_nums = get_abundant_nums()
+    return get_nums_not_written_as_sum_2_abundant_nums(all_nums, abundant_nums)
 
 if __name__ == '__main__':
     start = perf_counter()
