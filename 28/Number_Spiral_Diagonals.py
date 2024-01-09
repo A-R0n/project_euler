@@ -3,9 +3,7 @@
 ## Find the sum of diagonals
 
 
-import math
 from time import perf_counter
-from functools import lru_cache
 L = 1001
 W = L
 
