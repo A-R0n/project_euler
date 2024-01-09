@@ -9,9 +9,9 @@ UPPER_BOUND = N_UPPER + 1
 
 import math
 from time import perf_counter
+from functools import lru_cache
 
-
-
+@lru_cache(None)
 def is_num_prime(num: int) -> bool:
     num = abs(num)
     for n in range(2, int(math.sqrt(num) + 1)):
@@ -19,19 +19,17 @@ def is_num_prime(num: int) -> bool:
             return False
     return True
 
-# def get_prime_nums():
-#     return [n for n in range(-N_UPPER, N_UPPER+1) if is_num_prime(n)]
+def get_prime_nums():
+    return [n for n in range(-N_UPPER, N_UPPER+1) if is_num_prime(n)]
 
 def solve():
-    a_vals = [a for a in range(-UPPER_BOUND + 1, UPPER_BOUND)]    
-    b_vals = [-UPPER_BOUND] + a_vals + [UPPER_BOUND]
     max_count_a = None
     max_count_b = None
     max_count = 0
     count = 0
-    # prime_nums = get_prime_nums()
-    for a in a_vals:
-        for b in b_vals:
+    prime_nums = get_prime_nums()
+    for a in prime_nums:
+        for b in prime_nums:
             for n in range(N_UPPER+1):
                 quad_expression = n*n + (a*n) + b
                 if not is_num_prime(quad_expression):
